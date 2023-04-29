@@ -13,13 +13,13 @@ pipeline{
 
   tools
   {
-    maven 'MAVEN_3'
+    maven 'M2_HOME'
   }
   stages{
     stage('Checkout'){
       steps{
         echo 'Checkout the source code'
-        git 'https://github.com/vijayalakshmi-github/banking.git'
+        git 'https://github.com/mmiitthhuuzz/banking.git'
       }
     }
 
