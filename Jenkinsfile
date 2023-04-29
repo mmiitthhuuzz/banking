@@ -19,7 +19,7 @@ pipeline{
     stage('Checkout'){
       steps{
         echo 'Checkout the source code'
-        git 'https://github.com/mmiitthhuuzz/banking.git'
+       git branch: 'main', url: 'https://github.com/mmiitthhuuzz/banking.git'
       }
     }
 
