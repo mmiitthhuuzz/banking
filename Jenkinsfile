@@ -39,28 +39,16 @@ pipeline{
  
     stage('Build image') {
       steps{
-        script {
-          dockerImage = docker.build imagename
+         sh  docker build -t  mmidlaj/banking:latest '
+       }
+    }
+    stage('DockerLogin') {
+      steps {
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
         }
-      }
-    }
-    stage('Push Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-             dockerImage.push('latest')
-          }
-        }
-      }
-    }
-    stage ('Configure and Deploy Prod-server with Terraform, Ansible'){
-      steps{
-        
-        sh 'chmod 700 aws.pem'
-        sh 'terraform init'
-        sh 'terraform validate'
-        sh 'terraform apply --auto-approve'
-      }
-    }
+     }
   }
+    
+}
 }
