@@ -39,7 +39,7 @@ pipeline{
  
     stage('Build image') {
       steps{
-         sh  docker build -t  mmidlaj/banking:latest '
+         sh ' docker build -t  mmidlaj/banking:latest '
        }
     }
     stage('DockerLogin') {
