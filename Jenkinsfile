@@ -49,6 +49,52 @@ pipeline{
         }
      }
   }
-    
+
+     stage('Terraform init'){
+        steps {
+            sh 'terraform init'
+              }
+
+     }    
+	  
+	  stage('Terraform fmt'){
+        steps {
+            sh 'terraform fmt'
+              }
+
+     }    
+
+
+      stage('Terraform validate'){
+        steps {
+            sh 'terraform validate'
+
+              }
+
+     }
+
+            stage('Terraform plan'){
+        steps {
+            sh 'terraform plan'
+              }
+
+     }
+
+     stage('Terraform apply'){
+        steps {
+            sh 'terraform apply -auto-approve'
+		sleep 10
+              } 
+	   }
+
+     stage ('Configure Test-server with Terraform, Ansible and then Deploying'){
+            steps {
+                dir('test-server'){
+                sh 'sudo chmod 600 Keypair.pem'
+                sh 'terraform init'
+                sh 'terraform validate'
+                sh 'terraform apply --auto-approve'
+                }
+            }        
 }
 }
