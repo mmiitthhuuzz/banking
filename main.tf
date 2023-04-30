@@ -1,4 +1,4 @@
-resource "aws_instance" "test-server" {
+resource "aws_instance" "prod-server" {
   ami           = "ami-0c768662cc797cd75" 
   instance_type = "t2.micro" 
   key_name = "Keypair"
