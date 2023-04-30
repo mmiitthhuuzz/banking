@@ -34,7 +34,7 @@ pipeline{
     }
 
  
-    stage('Build image') {
+ /*   stage('Build image') {
       steps{
          sh ' docker build -t  mmidlaj/banking:latest .'
        }
@@ -91,5 +91,5 @@ pipeline{
                 sh 'terraform apply --auto-approve'
                   }        
 }
-}
+} */
 }
