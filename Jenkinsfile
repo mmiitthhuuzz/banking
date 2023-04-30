@@ -34,7 +34,7 @@ pipeline{
     }
 
  
- /*   stage('Build image') {
+     stage('Build image') {
       steps{
          sh ' docker build -t  mmidlaj/banking:latest .'
        }
