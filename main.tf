@@ -7,16 +7,16 @@ resource "aws_instance" "test-server" {
     type     = "ssh"
     user     = "ubuntu"
     private_key = file("./Keypair.pem")
-    host     = self.public_ip
+    host     = aaws_instance.prod-server.public.ip
   }
   provisioner "local-exec" {
     command = "sleep 60 && echo 'Instance ready'"
   }
   tags = {
-    Name = "test-server"
+    Name = "prod-server"
   }
   provisioner "local-exec" {
-        command = " echo ${aws_instance.test-server.public_ip} > inventory "
+        command = " echo ${aws_instance.prod-server.public_ip} > inventory "
   }
    provisioner "local-exec" {
   command = "ansible-playbook /var/lib/jenkins/workspace/banking/test-server/finance-playbook.yml "
