@@ -7,7 +7,7 @@ resource "aws_instance" "test-server" {
     type     = "ssh"
     user     = "ubuntu"
     private_key = file("./Keypair.pem")
-    host     = aaws_instance.prod-server.public.ip
+    host     = aws_instance.prod-server.public.ip
   }
   provisioner "local-exec" {
     command = "sleep 60 && echo 'Instance ready'"
